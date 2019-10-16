@@ -1,0 +1,3 @@
+- Flask         // web framework 
+- FlaskWTF      // Form management. Used for quick and easy CSRF protection.
+- Bootstrap     // Used for quick front end styling.
