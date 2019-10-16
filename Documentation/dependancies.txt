@@ -1,3 +1,6 @@
-- Flask         // web framework 
-- FlaskWTF      // Form management. Used for quick and easy CSRF protection.
-- Bootstrap     // Used for quick front end styling.
+- Flask                // web framework 
+- FlaskWTF             // Form management. Used for quick and easy CSRF protection.
+- Bootstrap            // Used for quick front end styling.
+- SQLAlchemy           // ORM for creating objects to represent database tables
+- SQLite               // Small SQL style database used for prototype. Easily swapped for MYSQL for production.
+- flask-migrate        // Used to manage database migrations

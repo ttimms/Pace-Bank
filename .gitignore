@@ -111,3 +111,10 @@ start.sh
 
 # my quick notes
 notes.txt
+
+# setup file for all pip installs
+setup.sh
+
+# SQLAlchemy database and migrations
+PaceApp.db
+migrations/
