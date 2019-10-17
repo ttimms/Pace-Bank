@@ -4,3 +4,4 @@
 - SQLAlchemy           // ORM for creating objects to represent database tables
 - SQLite               // Small SQL style database used for prototype. Easily swapped for MYSQL for production.
 - flask-migrate        // Used to manage database migrations
+- flask-login          // Handles session management 

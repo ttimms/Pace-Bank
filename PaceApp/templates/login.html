@@ -11,10 +11,16 @@
     <p>
         {{ form.username.label }}<br>
         {{ form.username(size=32) }}
+        {% for error in form.username.errors %}
+            <span class="alert alert-danger">{{ error }}</span>
+        {% endfor %}
     </p>
     <p>
         {{ form.password.label }}<br>
         {{ form.password(size=32) }}
+        {% for error in form.password.errors %}
+            <span class="alert alert-danger">{{ error }}</span>
+        {% endfor %}
     </p>
     <p>{{ form.submit() }}</p>
 </form>

@@ -19,6 +19,14 @@
         <h1>Pace Bank</h1>
       </div>
 
+      {% with messages = get_flashed_messages() %}
+        {% for message in messages %}
+          <div class="alert alert-danger">
+            <strong>{{ message }}</strong>
+          </div>
+        {% endfor %}
+      {% endwith %}
+
       {% block body %}
       {% endblock %}
     </div>
