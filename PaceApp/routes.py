@@ -14,9 +14,9 @@ def login():
     if customer is None or not customer.check_password(form.password.data):
       flash('Username or password is incorrect. Please try again.')
       return redirect(url_for('login'))
-    login_user(customer)
+    login_user(customer, remember=False)
     return redirect(url_for('index'))
-  return render_template('login.html', title='Login', form=form)
+  return render_template('login.html', title='Pace - Login', form=form)
 
 @PaceApp.route('/logout')
 @login_required
@@ -28,4 +28,4 @@ def logout():
 @PaceApp.route('/index')
 @login_required
 def index():
-  return "Select New Plan feature to be implemented here."
+  return render_template('index.html', title='Pace - Home')

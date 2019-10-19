@@ -19,6 +19,13 @@
         <h1>Pace Bank</h1>
       </div>
 
+      {% if current_user.is_authenticated %}
+        <div>
+          <a href="{{ url_for('index') }}">Home</a>
+          <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+      {% endif %}
+
       {% with messages = get_flashed_messages() %}
         {% for message in messages %}
           <div class="alert alert-danger">
