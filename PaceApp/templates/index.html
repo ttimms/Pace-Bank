@@ -6,7 +6,7 @@
     <p>Open accounts for {{ current_user.username }}:</p>
     <ul>
       {% for account in accounts %}
-        <li>{{ account.account_number }}: ${{ account.amount }}</li>
+        <li>Account Number: {{ account.account_number }} Current Balance: ${{ account.amount }}</li>
       {% endfor %}
     </ul>
   {% endif %}
@@ -15,6 +15,44 @@
   <br>
   <p>Open a new account?</p>
   <br>
-  
+  <form action="" method="post" class="login-form" novalidate>
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.account_type.label }}<br>
+        {{ form.account_type }}
+        {% for error in form.account_type.errors %}
+            <span class="alert alert-danger">{{ error }}</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.deposit.label }}<br>
+        {{ form.deposit }}
+        {% for error in form.deposit.errors %}
+            <span class="alert alert-danger">{{ error }}</span>
+        {% endfor %}
+    </p>
+    <p>
+      {{ form.address.label }}<br>
+      {{ form.address }}
+      {% for error in form.address.errors %}
+          <span class="alert alert-danger">{{ error }}</span>
+      {% endfor %}
+    </p>
+    <p>
+      {{ form.employer.label }}<br>
+      {{ form.employer }}
+      {% for error in form.employer.errors %}
+          <span class="alert alert-danger">{{ error }}</span>
+      {% endfor %}
+    </p>
+    <p>
+      {{ form.monthly_income.label }}<br>
+      {{ form.monthly_income }}
+      {% for error in form.monthly_income.errors %}
+          <span class="alert alert-danger">{{ error }}</span>
+      {% endfor %}
+    </p>
+    <p>{{ form.submit() }}</p>
+</form>
 
 {% endblock %}
