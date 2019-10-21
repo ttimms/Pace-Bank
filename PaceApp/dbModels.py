@@ -1,8 +1,7 @@
 from PaceApp import db, login
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from datetime import date
-from dateutil.relativedelta import relativedelta
+from datetime import datetime
 from sqlalchemy.ext.declarative import declared_attr
 
 class Customer(UserMixin, db.Model):
@@ -29,39 +28,14 @@ class Customer(UserMixin, db.Model):
     return Customer.query.get(int(id))
 
 
-class Checking_Account(db.Model):
-  __abstract__    = True
-  __mapper_args__ = {'polymorphic_identity': 'checking_account',
-                      'polymorphic_on': 'checking_account_type'}
+class Account(db.Model):
+  id              = db.Column(db.Integer, primary_key=True)
   account_number  = db.Column(db.String(11))
   amount          = db.Column(db.Float)
   min_deposit_bal = db.Column(db.Float)
-
-  @declared_attr
-  def customer_id(cls):
-    return db.Column(db.Integer, db.ForeignKey('customer.id'))
+  interest_rate   = db.Column(db.Float)
+  maturity_date   = timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+  customer_id     = db.Column(db.Integer, db.ForeignKey('customer.id'))
 
   def __repr__(self):
     return '<Acount Number: {}>'.format(self.account_number)
-
-class Saving_Account(Checking_Account):
-  id              = db.Column(db.Integer, primary_key=True)
-  interest_rate   = db.Column(db.Float)
-  __mapper_args__ = {'polymorphic_identity': 'saving_account'}
-
-class Money_Mar_Account(Checking_Account):
-  id              = db.Column(db.Integer, primary_key=True)
-  interest_rate   = db.Column(db.Float)
-  __mapper_args__ = {'polymorphic_identity': 'money_mar_account'}
-
-class CD_Account(Checking_Account):
-  id              = db.Column(db.Integer, primary_key=True)
-  interest_rate   = db.Column(db.Float)
-  maturity_date   = timestamp = db.Column(db.DateTime, index=True, default=date.today() + relativedelta(months=+6))
-  __mapper_args__ = {'polymorphic_identity': 'cd_account'}
-
-class IRA_CD(Checking_Account):
-  id              = db.Column(db.Integer, primary_key=True)
-  interest_rate   = db.Column(db.Float)
-  maturity_date   = timestamp = db.Column(db.DateTime, index=True, default=date.today() + relativedelta(months=+6))
-  __mapper_args__ = {'polymorphic_identity': 'ira_cd'}

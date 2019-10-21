@@ -2,7 +2,7 @@ from flask import render_template, redirect, flash, url_for
 from PaceApp import PaceApp
 from PaceApp.forms import LoginForm
 from flask_login import current_user, login_user, logout_user, login_required
-from PaceApp.dbModels import Customer
+from PaceApp.dbModels import Customer, Account
 
 @PaceApp.route('/login', methods=['GET', 'POST'])
 def login():
@@ -28,4 +28,5 @@ def logout():
 @PaceApp.route('/index')
 @login_required
 def index():
-  return render_template('index.html', title='Pace - Home')
+  accounts = current_user.accounts
+  return render_template('index.html', title='Pace - Home', accounts=accounts)

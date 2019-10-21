@@ -1,5 +1,20 @@
 {% extends 'base.html' %}
 
 {% block body %}
-  Open accounts for {{ current_user.username }}:
+  <br />
+  {% if accounts %}
+    <p>Open accounts for {{ current_user.username }}:</p>
+    <ul>
+      {% for account in accounts %}
+        <li>{{ account.account_number }}: ${{ account.amount }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  <br>
+  <hr>
+  <br>
+  <p>Open a new account?</p>
+  <br>
+  
+
 {% endblock %}
